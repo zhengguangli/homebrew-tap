@@ -9,10 +9,6 @@ class OpencodeCoworkProxy < Formula
     bin.install "opencode-cowork-proxy"
   end
 
-  def post_install
-    safe_system "launchctl", "kickstart", "-k", "gui/#{Process.uid}/homebrew.mxcl.opencode-cowork-proxy"
-  end
-
   service do
     run [opt_bin/"opencode-cowork-proxy"]
     environment_variables PORT: "18787", VERSION: "2.2.2"
