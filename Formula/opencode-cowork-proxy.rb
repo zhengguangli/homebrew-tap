@@ -1,9 +1,9 @@
 class OpencodeCoworkProxy < Formula
   desc "API translation proxy for AI clients (Anthropic↔OpenAI)"
   homepage "https://github.com/zhengguangli/opencode-cowork-proxy"
-  version "2.2.0"
-  url "https://github.com/zhengguangli/opencode-cowork-proxy/releases/download/v2.2.0/opencode-cowork-proxy"
-  sha256 "b587dc189e962f7cb22182ddfa9b0d52fd1fd5c25ec780aa1c65f6439baed3f3"
+  version "2.2.1"
+  url "https://github.com/zhengguangli/opencode-cowork-proxy/releases/download/v2.2.1/opencode-cowork-proxy"
+  sha256 "8970ac3af63442640d6938121490ae8b538f9b7c03adb112a9e89423e9453b47"
 
   def install
     bin.install "opencode-cowork-proxy"
@@ -17,7 +17,7 @@ class OpencodeCoworkProxy < Formula
 
   service do
     run [opt_bin/"opencode-cowork-proxy"]
-    environment_variables PORT: "18787", VERSION: "2.2.0"
+    environment_variables PORT: "18787", VERSION: "2.2.1"
     keep_alive true
     run_at_load true
     working_dir HOMEBREW_PREFIX
