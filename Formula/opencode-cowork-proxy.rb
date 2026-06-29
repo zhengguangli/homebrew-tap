@@ -7,9 +7,6 @@ class OpencodeCoworkProxy < Formula
 
   def install
     bin.install "opencode-cowork-proxy"
-  end
-
-  def post_install
     plist = "#{ENV["HOME"]}/Library/LaunchAgents/homebrew.mxcl.opencode-cowork-proxy.plist"
     if File.exist?(plist)
       uid = Process.uid
