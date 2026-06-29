@@ -1,23 +1,21 @@
 class OpencodeCoworkProxy < Formula
   desc "API translation proxy for AI clients (Anthropic↔OpenAI)"
   homepage "https://github.com/zhengguangli/opencode-cowork-proxy"
-  version "2.2.1"
-  url "https://github.com/zhengguangli/opencode-cowork-proxy/releases/download/v2.2.1/opencode-cowork-proxy"
-  sha256 "8970ac3af63442640d6938121490ae8b538f9b7c03adb112a9e89423e9453b47"
+  version "2.2.2"
+  url "https://github.com/zhengguangli/opencode-cowork-proxy/releases/download/v2.2.2/opencode-cowork-proxy"
+  sha256 "57106bece27ced0e95223e441a1b0a2e9845947b3ffcb609b57a5f0b5e05bb49"
 
   def install
     bin.install "opencode-cowork-proxy"
-    plist = "#{ENV["HOME"]}/Library/LaunchAgents/homebrew.mxcl.opencode-cowork-proxy.plist"
-    if File.exist?(plist)
-      uid = Process.uid
-      label = "homebrew.mxcl.opencode-cowork-proxy"
-      system "launchctl", "kickstart", "-k", "gui/#{uid}/#{label}"
-    end
+  end
+
+  def post_install
+    safe_system "launchctl", "kickstart", "-k", "gui/#{Process.uid}/homebrew.mxcl.opencode-cowork-proxy"
   end
 
   service do
     run [opt_bin/"opencode-cowork-proxy"]
-    environment_variables PORT: "18787", VERSION: "2.2.1"
+    environment_variables PORT: "18787", VERSION: "2.2.2"
     keep_alive true
     run_at_load true
     working_dir HOMEBREW_PREFIX
